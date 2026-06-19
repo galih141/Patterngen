@@ -1,0 +1,676 @@
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --matcha-deep:#4A5A32;
+  --matcha:#8A9A5B;
+  --matcha-soft:#B7C496;
+  --matcha-pale:#E4E9D6;
+  --brown-pastel:#D9C4A9;
+  --brown-deep:#8C6A4E;
+  --espresso:#3D2E22;
+  --cream:#F7F2E7;
+  --cream-card:#FFFCF5;
+  --line:#E2D6BF;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:'Inter',sans-serif;
+  color:var(--espresso);
+  background:var(--cream);
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(74,90,50,0.06) 1px, transparent 0);
+  background-size:18px 18px;
+}
+.wrap{padding:2rem 1.5rem;max-width:1100px;margin:0 auto}
+
+.hero{display:flex;align-items:center;gap:14px;margin-bottom:1.75rem}
+.hero-mark{
+  width:42px;height:42px;border-radius:50%;flex-shrink:0;
+  background:conic-gradient(from 200deg, var(--matcha-deep), var(--matcha), var(--matcha-soft), var(--matcha-deep));
+  position:relative;box-shadow:inset 0 0 0 4px var(--cream-card), 0 2px 6px rgba(74,90,50,.25);
+}
+h2{
+  font-family:'Fraunces',serif;
+  font-size:26px;font-weight:600;letter-spacing:-.01em;
+  color:var(--espresso);line-height:1.1;
+}
+.sub{font-size:13px;color:var(--brown-deep);margin-top:3px;letter-spacing:.01em}
+
+.section{
+  background:var(--cream-card);
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:1.1rem 1.3rem;
+  margin-bottom:1rem;
+  box-shadow:0 1px 2px rgba(61,46,34,.04);
+}
+.section-title{
+  font-family:'Fraunces',serif;
+  font-size:14px;font-weight:600;color:var(--matcha-deep);
+  letter-spacing:.01em;margin-bottom:12px;
+  display:flex;align-items:center;gap:8px;
+  padding-bottom:8px;border-bottom:1px solid var(--matcha-pale);
+}
+.section-title i{color:var(--brown-deep);font-size:15px}
+
+.row{display:grid;gap:10px;margin-bottom:10px}
+.row-2{grid-template-columns:1fr 1fr}
+.row-3{grid-template-columns:1fr 1fr 1fr}
+label{font-size:12.5px;color:var(--brown-deep);display:block;margin-bottom:4px;font-weight:500}
+
+select,input[type=text],input[type=number],textarea{
+  width:100%;font-size:13px;padding:8px 11px;
+  border:1px solid var(--line);border-radius:10px;
+  background:var(--cream);color:var(--espresso);outline:none;
+  font-family:'Inter',sans-serif;
+  transition:border-color .15s, box-shadow .15s;
+}
+select:focus,input:focus,textarea:focus{
+  border-color:var(--matcha);
+  box-shadow:0 0 0 3px var(--matcha-pale);
+}
+textarea{resize:vertical;min-height:70px;line-height:1.5}
+
+.chip-group{display:flex;flex-wrap:wrap;gap:6px}
+.chip{
+  font-size:12px;padding:5px 12px;border:1px solid var(--line);border-radius:20px;
+  cursor:pointer;background:var(--cream);color:var(--brown-deep);
+  transition:all .15s;user-select:none;font-weight:500;
+}
+.chip:hover{border-color:var(--matcha-soft)}
+.chip.active{background:var(--matcha-deep);color:var(--cream-card);border-color:var(--matcha-deep)}
+
+.color-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.color-swatch{width:26px;height:26px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:all .15s;flex-shrink:0;box-shadow:0 0 0 1px var(--line)}
+.color-swatch.active{border-color:var(--matcha-deep);transform:scale(1.15);box-shadow:0 0 0 1px var(--matcha-deep)}
+
+.range-row{display:flex;align-items:center;gap:10px}
+.range-row input[type=range]{flex:1;accent-color:var(--matcha-deep)}
+.range-val{font-size:12.5px;font-weight:600;min-width:80px;text-align:right;color:var(--matcha-deep)}
+
+.output-box{
+  background:var(--matcha-pale);
+  border:1px solid var(--matcha-soft);border-radius:12px;
+  padding:1.1rem;font-size:13px;line-height:1.7;color:var(--espresso);
+  white-space:pre-wrap;min-height:100px;
+  font-family:'Inter',monospace;
+}
+.btn-row{display:flex;gap:8px;margin-top:1rem}
+button{
+  font-size:13px;padding:9px 18px;border:1px solid var(--brown-pastel);
+  border-radius:10px;background:var(--cream-card);color:var(--espresso);
+  cursor:pointer;display:flex;align-items:center;gap:6px;font-weight:500;
+  font-family:'Inter',sans-serif;transition:all .15s;
+}
+button:hover{background:var(--brown-pastel)}
+button.primary{background:var(--matcha-deep);color:var(--cream-card);border-color:var(--matcha-deep)}
+button.primary:hover{background:var(--matcha)}
+.divider{height:1px;background:var(--line);margin:10px 0}
+.other-row{margin-top:8px}
+.badge{font-size:10.5px;padding:2px 8px;border-radius:20px;background:var(--brown-pastel);color:var(--espresso);margin-left:6px;font-weight:500}
+</style>
+
+<div class="wrap">
+<div class="hero">
+  <div class="hero-mark"></div>
+  <div>
+    <h2>Pattern Prompt Generator</h2>
+    <p class="sub">Whisk together your parameters, then steep a finished AI image prompt.</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title"><i class="ti ti-brush" aria-hidden="true"></i> Pattern subject</div>
+  <div class="row">
+    <div>
+      <label>What is the main subject / motif?</label>
+      <input type="text" id="subject" placeholder="e.g. police cars, batik kawung, tropical flowers…">
+    </div>
+  </div>
+  <div class="row row-2">
+    <div>
+      <label>Pattern category</label>
+      <select id="category">
+        <option value="">— select —</option>
+        <option>Vehicles & transport</option>
+        <option>Nature & botanical</option>
+        <option>Geometric & abstract</option>
+        <option>Traditional / cultural (batik, ikat, etc.)</option>
+        <option>Animals & wildlife</option>
+        <option>Food & drink</option>
+        <option>Architecture & city</option>
+        <option>Characters & icons</option>
+        <option>Others</option>
+      </select>
+    </div>
+    <div>
+      <label>Detail level</label>
+      <select id="detail">
+        <option>Silhouette only</option>
+        <option>Basic shapes</option>
+        <option selected>Moderate detail</option>
+        <option>Highly detailed</option>
+        <option>Maximalist / ornate</option>
+      </select>
+    </div>
+  </div>
+  <div id="category-other-wrap" class="other-row" style="display:none">
+    <label>Describe your category</label>
+    <input type="text" id="category-other" placeholder="e.g. sci-fi gadgets, sports equipment…">
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title"><i class="ti ti-layout-grid" aria-hidden="true"></i> Layout & arrangement</div>
+  <div class="row row-2">
+    <div>
+      <label>Grid type</label>
+      <select id="grid">
+        <option>Straight rows & columns</option>
+        <option>Brick offset / staggered</option>
+        <option>Diagonal / 45°</option>
+        <option>Hexagonal</option>
+        <option>Radial / circular</option>
+        <option>Random scatter</option>
+        <option>Lane rows (like a road)</option>
+        <option>Others</option>
+      </select>
+    </div>
+    <div>
+      <label>Symmetry</label>
+      <select id="symmetry">
+        <option>None</option>
+        <option>Mirror horizontal</option>
+        <option>Mirror vertical</option>
+        <option>2-fold rotational</option>
+        <option>4-fold rotational</option>
+        <option>6-fold rotational</option>
+        <option>Others</option>
+      </select>
+    </div>
+  </div>
+  <div id="grid-other-wrap" class="other-row" style="display:none">
+    <label>Describe your grid type</label>
+    <input type="text" id="grid-other" placeholder="e.g. spiral layout, concentric rings…">
+  </div>
+  <div id="sym-other-wrap" class="other-row" style="display:none">
+    <label>Describe your symmetry</label>
+    <input type="text" id="sym-other" placeholder="e.g. 8-fold kaleidoscope…">
+  </div>
+  <div class="divider"></div>
+  <div class="row row-3">
+    <div>
+      <label>Item direction</label>
+      <select id="direction">
+        <option>All facing right</option>
+        <option>All facing left</option>
+        <option>Alternating</option>
+        <option>Random directions</option>
+        <option>Top-down view</option>
+        <option>Others</option>
+      </select>
+    </div>
+    <div>
+      <label>Scale variation</label>
+      <select id="scalevar">
+        <option>All same size</option>
+        <option>Slight variation</option>
+        <option>Large variation (mixed sizes)</option>
+      </select>
+    </div>
+    <div>
+      <label>Rotation</label>
+      <select id="rotation">
+        <option>No rotation (0°)</option>
+        <option>Slight tilt</option>
+        <option>45° diagonal</option>
+        <option>Random rotation</option>
+        <option>Others</option>
+      </select>
+    </div>
+  </div>
+  <div id="dir-other-wrap" class="other-row" style="display:none">
+    <label>Describe direction</label>
+    <input type="text" id="dir-other" placeholder="e.g. all pointing inward to center…">
+  </div>
+  <div id="rot-other-wrap" class="other-row" style="display:none">
+    <label>Describe rotation</label>
+    <input type="text" id="rot-other" placeholder="e.g. each row rotated 15° more…">
+  </div>
+  <div class="divider"></div>
+  <div class="row row-2">
+    <div>
+      <label>Density</label>
+      <div class="range-row">
+        <input type="range" id="density" min="1" max="5" step="1" value="3">
+        <span class="range-val" id="density-val">Medium</span>
+      </div>
+    </div>
+    <div>
+      <label>Item spacing / gap</label>
+      <div class="range-row">
+        <input type="range" id="spacing" min="1" max="5" step="1" value="2">
+        <span class="range-val" id="spacing-val">Small gap</span>
+      </div>
+    </div>
+  </div>
+  <div class="row row-2" style="margin-top:10px">
+    <div>
+      <label>Item size</label>
+      <select id="itemsize">
+        <option>Tiny (micro pattern)</option>
+        <option>Small</option>
+        <option selected>Medium</option>
+        <option>Large</option>
+        <option>Extra large (bold, few items)</option>
+      </select>
+    </div>
+    <div>
+      <label>Tile / repeat unit</label>
+      <select id="tile">
+        <option>Seamless / tileable</option>
+        <option>Non-repeating composition</option>
+        <option>Half-drop repeat</option>
+        <option>Mirror repeat</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title"><i class="ti ti-palette" aria-hidden="true"></i> Color & palette</div>
+  <div class="row row-2">
+    <div>
+      <label>Palette style</label>
+      <select id="palette">
+        <option>Flat & solid (vector look)</option>
+        <option>Pastel / soft tones</option>
+        <option>Earthy / muted</option>
+        <option>Bold & saturated</option>
+        <option>Monochrome (single hue)</option>
+        <option>Duotone (2 colors only)</option>
+        <option>Retro / vintage muted</option>
+        <option>Neon / vibrant pop</option>
+        <option>Others</option>
+      </select>
+    </div>
+    <div>
+      <label>Number of colors</label>
+      <select id="numcolors">
+        <option>2 colors</option>
+        <option selected>3–4 colors</option>
+        <option>5–6 colors</option>
+        <option>Full multicolor</option>
+      </select>
+    </div>
+  </div>
+  <div id="palette-other-wrap" class="other-row" style="display:none">
+    <label>Describe your palette</label>
+    <input type="text" id="palette-other" placeholder="e.g. deep indigo + burnt orange + cream…">
+  </div>
+  <div style="margin-top:10px">
+    <label>Background color</label>
+    <div class="color-row" style="margin-top:6px">
+      <div class="color-swatch active" data-color="white" style="background:#ffffff;border-color:#ccc" title="white"></div>
+      <div class="color-swatch" data-color="cream" style="background:#f5f0e8" title="cream"></div>
+      <div class="color-swatch" data-color="light gray" style="background:#e8e8e8" title="light gray"></div>
+      <div class="color-swatch" data-color="dark gray" style="background:#444" title="dark gray"></div>
+      <div class="color-swatch" data-color="black" style="background:#111" title="black"></div>
+      <div class="color-swatch" data-color="dark navy" style="background:#1a2340" title="navy"></div>
+      <div class="color-swatch" data-color="deep indigo" style="background:#2d1b69" title="indigo"></div>
+      <div class="color-swatch" data-color="dark brown" style="background:#3e1f0a" title="brown"></div>
+      <div class="color-swatch" data-color="pastel blue" style="background:#d6eaf8" title="pastel blue"></div>
+      <div class="color-swatch" data-color="pastel pink" style="background:#fde8f0" title="pastel pink"></div>
+      <div class="color-swatch" data-color="pastel green" style="background:#e0f5e8" title="pastel green"></div>
+      <div class="color-swatch" data-color="pastel yellow" style="background:#fef9e7" title="pastel yellow"></div>
+      <select id="bg-custom" style="width:auto;font-size:12px;padding:4px 8px">
+        <option value="">+ custom</option>
+        <option>warm white</option>
+        <option>asphalt gray</option>
+        <option>forest green</option>
+        <option>brick red</option>
+        <option>terracotta</option>
+        <option>sand</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title"><i class="ti ti-brush-off" aria-hidden="true"></i> Visual style</div>
+  <div style="margin-bottom:10px">
+    <label style="margin-bottom:6px">Illustration style <span class="badge">pick one</span></label>
+    <div class="chip-group" id="style-chips">
+      <div class="chip" data-val="flat vector">Flat vector</div>
+      <div class="chip active" data-val="outlined / wireframe">Outlined</div>
+      <div class="chip" data-val="filled + stroke">Filled + stroke</div>
+      <div class="chip" data-val="pixel art / 8-bit">Pixel art</div>
+      <div class="chip" data-val="cute chibi / cartoon">Cute / chibi</div>
+      <div class="chip" data-val="hand-drawn / doodle">Hand-drawn</div>
+      <div class="chip" data-val="geometric minimal">Geometric minimal</div>
+      <div class="chip" data-val="isometric 3D flat">Isometric</div>
+      <div class="chip" data-val="retro halftone">Retro halftone</div>
+      <div class="chip" data-val="watercolor loose">Watercolor</div>
+      <div class="chip others-chip" data-val="others">Others…</div>
+    </div>
+    <div id="style-other-wrap" class="other-row" style="display:none">
+      <label>Describe your style</label>
+      <input type="text" id="style-other" placeholder="e.g. woodblock print, engraving, linocut…">
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="row row-2">
+    <div>
+      <label>Line weight</label>
+      <select id="lineweight">
+        <option>Hairline (very thin)</option>
+        <option selected>Fine</option>
+        <option>Medium</option>
+        <option>Bold / thick</option>
+        <option>No outlines</option>
+      </select>
+    </div>
+    <div>
+      <label>Corner style</label>
+      <select id="corners">
+        <option>Sharp / angular</option>
+        <option selected>Slightly rounded</option>
+        <option>Very rounded / bubbly</option>
+      </select>
+    </div>
+  </div>
+  <div class="row row-2" style="margin-top:10px">
+    <div>
+      <label>Texture overlay</label>
+      <select id="texture">
+        <option selected>None (clean digital)</option>
+        <option>Subtle grain</option>
+        <option>Paper / fabric texture</option>
+        <option>Halftone dots</option>
+        <option>Hatching / cross-hatch</option>
+        <option>Noise / distress</option>
+        <option>Others</option>
+      </select>
+    </div>
+    <div>
+      <label>Background filler</label>
+      <select id="bgfill">
+        <option selected>Plain background</option>
+        <option>Micro dot pattern</option>
+        <option>Subtle grid lines</option>
+        <option>Noise texture</option>
+        <option>Secondary micro motif</option>
+        <option>Others</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title"><i class="ti ti-car" aria-hidden="true"></i> Item-specific details</div>
+  <div class="row">
+    <div>
+      <label>Item variations in the pattern (list each type, comma separated)</label>
+      <input type="text" id="variations" placeholder="e.g. police car, fire truck, red sedan, yellow hatchback">
+    </div>
+  </div>
+  <div class="row row-2">
+    <div>
+      <label>Special markings / livery</label>
+      <input type="text" id="markings" placeholder="e.g. POLICE stripe, ladder on roof, star badge">
+    </div>
+    <div>
+      <label>Accessories / roof items</label>
+      <input type="text" id="accessories" placeholder="e.g. light bar, siren, antenna, ladder">
+    </div>
+  </div>
+  <div class="row row-2">
+    <div>
+      <label>Ratio of item types</label>
+      <select id="ratio">
+        <option>All equal</option>
+        <option>One dominant, others scattered</option>
+        <option>Two main types</option>
+        <option>Random mix</option>
+      </select>
+    </div>
+    <div>
+      <label>Grouping</label>
+      <select id="grouping">
+        <option>Evenly distributed</option>
+        <option>Clustered by type</option>
+        <option>Alternating rows by type</option>
+        <option>Random</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title"><i class="ti ti-border-outer" aria-hidden="true"></i> Composition</div>
+  <div class="row row-2">
+    <div>
+      <label>Border / frame</label>
+      <select id="border">
+        <option selected>No border</option>
+        <option>Simple thin border</option>
+        <option>Decorative ornamental border</option>
+        <option>Double-line border</option>
+        <option>Others</option>
+      </select>
+    </div>
+    <div>
+      <label>Output format / use</label>
+      <select id="output">
+        <option selected>Seamless repeating pattern</option>
+        <option>Single tile / swatch</option>
+        <option>Fabric / textile print</option>
+        <option>Wrapping paper</option>
+        <option>Wallpaper</option>
+        <option>T-shirt print</option>
+        <option>Sticker sheet</option>
+      </select>
+    </div>
+  </div>
+  <div id="border-other-wrap" class="other-row" style="display:none">
+    <label>Describe your border</label>
+    <input type="text" id="border-other" placeholder="e.g. zigzag border with dots…">
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title"><i class="ti ti-pencil" aria-hidden="true"></i> Extra / custom notes</div>
+  <textarea id="extra" placeholder="Any additional details, mood, references, or specific requests… e.g. 'inspired by 1960s Japanese print', 'must be child-friendly', 'avoid green colors'"></textarea>
+</div>
+
+<div class="btn-row">
+  <button class="primary" onclick="generatePrompt()"><i class="ti ti-wand" aria-hidden="true"></i> Generate prompt</button>
+  <button onclick="clearAll()"><i class="ti ti-refresh" aria-hidden="true"></i> Reset</button>
+</div>
+
+<div id="output-section" style="display:none;margin-top:1.5rem">
+  <div class="section">
+    <div class="section-title"><i class="ti ti-file-text" aria-hidden="true"></i> Your generated prompt</div>
+    <div class="output-box" id="prompt-output"></div>
+    <div class="btn-row">
+      <button onclick="copyPrompt()"><i class="ti ti-copy" aria-hidden="true"></i> Copy prompt</button>
+      <button onclick="sendToChat()"><i class="ti ti-message" aria-hidden="true"></i> Ask Claude to refine ↗</button>
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+const densityLabels = ['Very sparse','Sparse','Medium','Dense','Very dense'];
+const spacingLabels = ['Touching / no gap','Small gap','Medium gap','Large gap','Very spaced out'];
+
+document.getElementById('density').addEventListener('input', function(){
+  document.getElementById('density-val').textContent = densityLabels[this.value-1];
+});
+document.getElementById('spacing').addEventListener('input', function(){
+  document.getElementById('spacing-val').textContent = spacingLabels[this.value-1];
+});
+
+document.querySelectorAll('.color-swatch').forEach(sw=>{
+  sw.addEventListener('click',()=>{
+    document.querySelectorAll('.color-swatch').forEach(s=>s.classList.remove('active'));
+    sw.classList.add('active');
+    document.getElementById('bg-custom').value='';
+  });
+});
+document.getElementById('bg-custom').addEventListener('change',function(){
+  if(this.value) document.querySelectorAll('.color-swatch').forEach(s=>s.classList.remove('active'));
+});
+
+document.querySelectorAll('#style-chips .chip').forEach(chip=>{
+  chip.addEventListener('click',()=>{
+    if(chip.classList.contains('others-chip')){
+      document.querySelectorAll('#style-chips .chip:not(.others-chip)').forEach(c=>c.classList.remove('active'));
+      chip.classList.toggle('active');
+      document.getElementById('style-other-wrap').style.display = chip.classList.contains('active') ? 'block' : 'none';
+    } else {
+      document.querySelectorAll('#style-chips .chip').forEach(c=>c.classList.remove('active'));
+      chip.classList.add('active');
+      document.getElementById('style-other-wrap').style.display = 'none';
+    }
+  });
+});
+
+function watchOther(selectId, wrapId){
+  document.getElementById(selectId).addEventListener('change', function(){
+    document.getElementById(wrapId).style.display = this.value === 'Others' ? 'block' : 'none';
+  });
+}
+watchOther('category','category-other-wrap');
+watchOther('grid','grid-other-wrap');
+watchOther('symmetry','sym-other-wrap');
+watchOther('direction','dir-other-wrap');
+watchOther('rotation','rot-other-wrap');
+watchOther('palette','palette-other-wrap');
+watchOther('border','border-other-wrap');
+
+function val(id){ return document.getElementById(id).value.trim(); }
+function selOrOther(selId, otherId){
+  const s = val(selId);
+  if(s==='Others'){
+    const o = val(otherId);
+    return o || 'custom';
+  }
+  return s;
+}
+
+function getStyleChip(){
+  const active = document.querySelector('#style-chips .chip.active');
+  if(!active) return 'flat vector';
+  if(active.classList.contains('others-chip')) return val('style-other') || 'custom style';
+  return active.dataset.val;
+}
+
+function getBg(){
+  const custom = val('bg-custom');
+  if(custom) return custom;
+  const active = document.querySelector('.color-swatch.active');
+  return active ? active.dataset.color : 'white';
+}
+
+function generatePrompt(){
+  const subject = val('subject') || 'mixed motifs';
+  const category = selOrOther('category','category-other');
+  const detail = val('detail');
+  const grid = selOrOther('grid','grid-other');
+  const symmetry = selOrOther('symmetry','sym-other');
+  const direction = selOrOther('direction','dir-other');
+  const scalevar = val('scalevar');
+  const rotation = selOrOther('rotation','rot-other');
+  const densityIdx = parseInt(document.getElementById('density').value)-1;
+  const spacingIdx = parseInt(document.getElementById('spacing').value)-1;
+  const density = densityLabels[densityIdx].toLowerCase();
+  const spacing = spacingLabels[spacingIdx].toLowerCase();
+  const itemsize = val('itemsize');
+  const tile = val('tile');
+  const palette = selOrOther('palette','palette-other');
+  const numcolors = val('numcolors');
+  const bg = getBg();
+  const style = getStyleChip();
+  const lineweight = val('lineweight');
+  const corners = val('corners');
+  const texture = val('texture');
+  const bgfill = val('bgfill');
+  const variations = val('variations');
+  const markings = val('markings');
+  const accessories = val('accessories');
+  const ratio = val('ratio');
+  const grouping = val('grouping');
+  const border = selOrOther('border','border-other');
+  const output = val('output');
+  const extra = val('extra');
+
+  let parts = [];
+
+  parts.push(`A ${tile.toLowerCase()} ${style} pattern featuring ${subject} (${category}).`);
+
+  parts.push(`Illustration detail: ${detail}. Line weight: ${lineweight}. Corner style: ${corners}.`);
+
+  if(variations) parts.push(`Item types included: ${variations}.`);
+  if(markings) parts.push(`Special markings and livery: ${markings}.`);
+  if(accessories) parts.push(`Accessories / roof items: ${accessories}.`);
+  if(variations){
+    parts.push(`Distribution: ${ratio.toLowerCase()}. Items grouped: ${grouping.toLowerCase()}.`);
+  }
+
+  parts.push(`Layout: ${grid} grid, ${symmetry} symmetry. All items ${direction}.`);
+  parts.push(`Scale variation: ${scalevar}. Rotation: ${rotation}.`);
+  parts.push(`Item size: ${itemsize}. Density: ${density}. Spacing between items: ${spacing}.`);
+
+  parts.push(`Color palette: ${palette} with ${numcolors}, on a ${bg} background.`);
+
+  if(texture !== 'None (clean digital)') parts.push(`Texture overlay: ${texture}.`);
+  if(bgfill !== 'Plain background') parts.push(`Background filler: ${bgfill}.`);
+
+  if(border !== 'No border') parts.push(`Frame: ${border}.`);
+
+  parts.push(`Intended for: ${output}.`);
+
+  if(extra) parts.push(`Additional notes: ${extra}`);
+
+  parts.push(`The pattern should be clean, graphic, and print-ready.`);
+
+  const prompt = parts.join('\n\n');
+  document.getElementById('prompt-output').textContent = prompt;
+  document.getElementById('output-section').style.display = 'block';
+  document.getElementById('output-section').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function copyPrompt(){
+  const text = document.getElementById('prompt-output').textContent;
+  navigator.clipboard.writeText(text).then(()=>{
+    const btn = event.target.closest('button');
+    const orig = btn.innerHTML;
+    btn.innerHTML = '<i class="ti ti-check" aria-hidden="true"></i> Copied!';
+    setTimeout(()=>btn.innerHTML=orig, 1800);
+  });
+}
+
+function sendToChat(){
+  const text = document.getElementById('prompt-output').textContent;
+  sendPrompt('Here is my pattern prompt:\n\n' + text + '\n\nPlease help me refine it, make it more vivid and optimized for AI image generation.');
+}
+
+function clearAll(){
+  document.querySelectorAll('input[type=text], input[type=number], textarea').forEach(el=>el.value='');
+  document.querySelectorAll('select').forEach(el=>el.selectedIndex=0);
+  document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+  document.querySelector('.chip[data-val="outlined / wireframe"]').classList.add('active');
+  document.querySelectorAll('.color-swatch').forEach(s=>s.classList.remove('active'));
+  document.querySelector('.color-swatch[data-color="white"]').classList.add('active');
+  document.getElementById('density').value=3;
+  document.getElementById('density-val').textContent='Medium';
+  document.getElementById('spacing').value=2;
+  document.getElementById('spacing-val').textContent='Small gap';
+  document.getElementById('output-section').style.display='none';
+  document.querySelectorAll('[id$="-other-wrap"]').forEach(el=>el.style.display='none');
+}
+</script>
